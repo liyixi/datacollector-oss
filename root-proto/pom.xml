@@ -684,6 +684,7 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
       <id>jdk8</id>
       <activation>

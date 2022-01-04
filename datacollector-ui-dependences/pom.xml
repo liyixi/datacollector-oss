@@ -1,0 +1,13 @@
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.streamsets</groupId>
+    <artifactId>streamsets-datacollector</artifactId>
+    <version>3.22.2</version>
+    <relativePath/>
+  </parent>
+  <artifactId>datacollector-ui-dependences</artifactId>
+  <name>datacollector-ui-dependences Tapestry 5 Application</name>
+
+</project>
