@@ -94,6 +94,7 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
       <id>rpm</id>
       <activation>

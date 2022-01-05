@@ -60,6 +60,7 @@
       <version>${slf4j.version}</version>
       <scope>compile</scope>
     </dependency>
+
     <dependency>
       <groupId>com.streamsets</groupId>
       <artifactId>streamsets-datacollector-cli</artifactId>
@@ -84,26 +85,31 @@
       <artifactId>streamsets-datacollector-container-common</artifactId>
       <scope>compile</scope>
     </dependency>
+
     <dependency>
       <groupId>com.streamsets</groupId>
       <artifactId>streamsets-datacollector-container</artifactId>
       <scope>compile</scope>
     </dependency>
+
     <dependency>
       <groupId>com.streamsets</groupId>
       <artifactId>streamsets-datacollector-bootstrap</artifactId>
       <scope>compile</scope>
     </dependency>
+
     <dependency>
       <groupId>com.streamsets</groupId>
       <artifactId>streamsets-datacollector-cluster-bootstrap-api</artifactId>
       <scope>provided</scope>
     </dependency>
+
     <dependency>
        <groupId>com.streamsets</groupId>
        <artifactId>streamsets-datacollector-cluster-bootstrap</artifactId>
        <scope>provided</scope>
     </dependency>
+
 <!--    <dependency>-->
 <!--      <groupId>com.streamsets</groupId>-->
 <!--      <artifactId>streamsets-datacollector-mapr-cluster-bootstrap</artifactId>-->
@@ -125,47 +131,55 @@
       <version>2.4.0-b180830.0359</version>
       <scope>compile</scope>
     </dependency>
+
     <dependency>
       <groupId>javax.activation</groupId>
       <artifactId>javax.activation-api</artifactId>
       <version>1.2.0</version>
       <scope>compile</scope>
     </dependency>
+
     <dependency>
       <groupId>org.xerial.snappy</groupId>
       <artifactId>snappy-java</artifactId>
       <version>${snappy.version}</version>
       <scope>compile</scope>
     </dependency>
+
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
       <version>${log4j.version}</version>
       <scope>compile</scope>
     </dependency>
+
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
       <version>${slf4j.version}</version>
       <scope>compile</scope>
     </dependency>
+
     <dependency>
       <groupId>com.streamsets</groupId>
       <artifactId>streamsets-datacollector-metadata-generator</artifactId>
       <scope>compile</scope>
     </dependency>
+
     <dependency>
       <groupId>org.bouncycastle</groupId>
       <artifactId>bcprov-jdk15on</artifactId>
       <version>${bouncycastle.version}</version>
       <scope>compile</scope>
     </dependency>
+
     <dependency>
       <groupId>org.bouncycastle</groupId>
       <artifactId>bcpkix-jdk15on</artifactId>
       <version>${bouncycastle.version}</version>
       <scope>compile</scope>
     </dependency>
+
     <dependency>
       <groupId>org.bouncycastle</groupId>
       <artifactId>bcpg-jdk15on</artifactId>
@@ -270,6 +284,7 @@
               </descriptors>
             </configuration>
           </execution>
+
           <execution>
             <id>legacy-libs</id>
             <phase>package</phase>
@@ -346,71 +361,71 @@
       </properties>
     </profile>
 
-<!--    <profile>-->
-<!--      <id>docs</id>-->
-<!--      <activation>-->
-<!--        <activeByDefault>false</activeByDefault>-->
-<!--        <property>-->
-<!--          <name>release</name>-->
-<!--        </property>-->
-<!--      </activation>-->
-<!--      <properties>-->
-<!--        <docs.dist-dir>${basedir}/../docs/target/dita/out</docs.dist-dir>-->
-<!--      </properties>-->
-<!--      <dependencies>-->
-<!--        <dependency>-->
-<!--          <groupId>com.streamsets</groupId>-->
-<!--          <artifactId>streamsets-datacollector-docs</artifactId>-->
-<!--          <scope>compile</scope>-->
-<!--        </dependency>-->
-<!--      </dependencies>-->
-<!--      <build>-->
-<!--        <plugins>-->
-<!--          &lt;!&ndash; COMMENTING OUT JAVADOC GENERATION &ndash;&gt;-->
-<!--          &lt;!&ndash;<plugin>&ndash;&gt;-->
-<!--            &lt;!&ndash;<artifactId>maven-javadoc-plugin</artifactId>&ndash;&gt;-->
-<!--            &lt;!&ndash;<version>2.10.1</version>&ndash;&gt;-->
-<!--            &lt;!&ndash;<executions>&ndash;&gt;-->
-<!--              &lt;!&ndash;<execution>&ndash;&gt;-->
-<!--                &lt;!&ndash;<id>javadoc</id>&ndash;&gt;-->
-<!--                &lt;!&ndash;<phase>prepare-package</phase>&ndash;&gt;-->
-<!--                &lt;!&ndash;<goals>&ndash;&gt;-->
-<!--                  &lt;!&ndash;<goal>javadoc</goal>&ndash;&gt;-->
-<!--                &lt;!&ndash;</goals>&ndash;&gt;-->
-<!--                &lt;!&ndash;<configuration>&ndash;&gt;-->
-<!--                  &lt;!&ndash;<linksource>false</linksource>&ndash;&gt;-->
-<!--                  &lt;!&ndash;<quiet>true</quiet>&ndash;&gt;-->
-<!--                  &lt;!&ndash;<verbose>false</verbose>&ndash;&gt;-->
-<!--                  &lt;!&ndash;<charset>UTF-8</charset>&ndash;&gt;-->
+    <profile>
+      <id>docs</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+        <property>
+          <name>release</name>
+        </property>
+      </activation>
+      <properties>
+        <docs.dist-dir>${basedir}/../docs/target/dita/out</docs.dist-dir>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>com.streamsets</groupId>
+          <artifactId>streamsets-datacollector-docs</artifactId>
+          <scope>compile</scope>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <!-- COMMENTING OUT JAVADOC GENERATION -->
+          <plugin>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>2.10.1</version>
+            <executions>
+              <execution>
+                <id>javadoc</id>
+                <phase>prepare-package</phase>
+                <goals>
+                  <goal>javadoc</goal>
+                </goals>
+                <configuration>
+                  <linksource>false</linksource>
+                  <quiet>true</quiet>
+                  <verbose>false</verbose>
+                  <charset>UTF-8</charset>
 
-<!--                  &lt;!&ndash;<excludePackageNames>com.streamsets.pipeline.api.impl:com.streamsets.pipeline.sdk.annotationsprocessor</excludePackageNames>&ndash;&gt;-->
+                  <excludePackageNames>com.streamsets.pipeline.api.impl:com.streamsets.pipeline.sdk.annotationsprocessor</excludePackageNames>
 
-<!--                  &lt;!&ndash;<groups>&ndash;&gt;-->
-<!--                    &lt;!&ndash;<group>&ndash;&gt;-->
-<!--                      &lt;!&ndash;<title>Pipeline API</title>&ndash;&gt;-->
-<!--                      &lt;!&ndash;<packages>&ndash;&gt;-->
-<!--                        &lt;!&ndash;com.streamsets.pipeline.api:com.streamsets.pipeline.api.base&ndash;&gt;-->
-<!--                      &lt;!&ndash;</packages>&ndash;&gt;-->
-<!--                    &lt;!&ndash;</group>&ndash;&gt;-->
-<!--                    &lt;!&ndash;<group>&ndash;&gt;-->
-<!--                      &lt;!&ndash;<title>Pipeline Stage SDK API</title>&ndash;&gt;-->
-<!--                      &lt;!&ndash;<packages>&ndash;&gt;-->
-<!--                        &lt;!&ndash;com.streamsets.pipeline.sdk&ndash;&gt;-->
-<!--                      &lt;!&ndash;</packages>&ndash;&gt;-->
-<!--                    &lt;!&ndash;</group>&ndash;&gt;-->
-<!--                  &lt;!&ndash;</groups>&ndash;&gt;-->
+                  <groups>
+                    <group>
+                      <title>Pipeline API</title>
+                      <packages>
+                        com.streamsets.pipeline.api:com.streamsets.pipeline.api.base
+                      </packages>
+                    </group>
+                    <group>
+                      <title>Pipeline Stage SDK API</title>
+                      <packages>
+                        com.streamsets.pipeline.sdk
+                      </packages>
+                    </group>
+                  </groups>
 
-<!--                  &lt;!&ndash;<includeDependencySources>true</includeDependencySources>&ndash;&gt;-->
-<!--                  &lt;!&ndash;<dependencySourceIncludes>&ndash;&gt;-->
-<!--                    &lt;!&ndash;<dependencySourceInclude>com.streamsets:streamsets-datacollector-api</dependencySourceInclude>&ndash;&gt;-->
-<!--                    &lt;!&ndash;<dependencySourceInclude>com.streamsets:streamsets-datacollector-sdk</dependencySourceInclude>&ndash;&gt;-->
-<!--                  &lt;!&ndash;</dependencySourceIncludes>&ndash;&gt;-->
-<!--                &lt;!&ndash;</configuration>&ndash;&gt;-->
-<!--              &lt;!&ndash;</execution>&ndash;&gt;-->
-<!--            &lt;!&ndash;</executions>&ndash;&gt;-->
-<!--          &lt;!&ndash;</plugin>&ndash;&gt;-->
-<!--        </plugins>-->
-<!--      </build>-->
-<!--    </profile>-->
+                  <includeDependencySources>true</includeDependencySources>
+                  <dependencySourceIncludes>
+                    <dependencySourceInclude>com.streamsets:streamsets-datacollector-api</dependencySourceInclude>
+                    <dependencySourceInclude>com.streamsets:streamsets-datacollector-sdk</dependencySourceInclude>
+                  </dependencySourceIncludes>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
   </profiles>
 </project>

@@ -25,6 +25,7 @@
     <artifactId>streamsets-datacollector</artifactId>
     <version>3.22.2</version>
   </parent>
+
   <artifactId>streamsets-datacollector-root-proto</artifactId>
   <version>3.22.2</version>
   <description>StreamSets Data Collector Root Prototype POM</description>

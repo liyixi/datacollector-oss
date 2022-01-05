@@ -201,11 +201,11 @@
         <artifactId>streamsets-datacollector-mysql-binlog-lib</artifactId>
         <version>${project.version}</version>
       </dependency>
-<!--      <dependency>-->
-<!--        <groupId>com.streamsets</groupId>-->
-<!--        <artifactId>streamsets-datacollector-rabbitmq-lib</artifactId>-->
-<!--        <version>${project.version}</version>-->
-<!--      </dependency>-->
+      <dependency>
+        <groupId>com.streamsets</groupId>
+        <artifactId>streamsets-datacollector-rabbitmq-lib</artifactId>
+        <version>${project.version}</version>
+      </dependency>
       <dependency>
         <groupId>com.streamsets</groupId>
         <artifactId>streamsets-datacollector-dev-lib</artifactId>

@@ -26,6 +26,7 @@
     <version>3.22.2</version>
     <relativePath>../root</relativePath>
   </parent>
+
   <groupId>com.streamsets</groupId>
   <artifactId>streamsets-datacollector-bootstrap</artifactId>
   <version>3.22.2</version>
@@ -39,11 +40,13 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>com.streamsets</groupId>
       <artifactId>streamsets-testing</artifactId>
@@ -60,6 +63,7 @@
           <skip>true</skip>
         </configuration>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -67,6 +71,7 @@
           <useManifestOnlyJar>false</useManifestOnlyJar>
         </configuration>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
