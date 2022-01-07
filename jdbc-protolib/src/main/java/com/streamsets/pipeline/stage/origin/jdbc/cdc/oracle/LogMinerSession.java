@@ -66,17 +66,17 @@ public class LogMinerSession {
   private static final Logger LOG = LoggerFactory.getLogger(LogMinerSession.class);
 
   // Option flags for LogMiner start command
-  private static final String CONTINUOUS_MINE_OPTION = "DBMS_LOGMNR.CONTINUOUS_MINE";
-  private static final String NO_SQL_DELIMITER_OPTION = "DBMS_LOGMNR.NO_SQL_DELIMITER";
-  private static final String COMMITTED_DATA_ONLY_OPTION = "DBMS_LOGMNR.COMMITTED_DATA_ONLY";
-  private static final String DDL_DICT_TRACKING_OPTION = "DBMS_LOGMNR.DDL_DICT_TRACKING";
-  private static final String DICT_FROM_REDO_LOGS_OPTION = "DBMS_LOGMNR.DICT_FROM_REDO_LOGS";
-  private static final String DICT_FROM_ONLINE_CATALOG_OPTION = "DBMS_LOGMNR.DICT_FROM_ONLINE_CATALOG";
+  private static final String CONTINUOUS_MINE_OPTION = "SYS.DBMS_LOGMNR.CONTINUOUS_MINE";
+  private static final String NO_SQL_DELIMITER_OPTION = "SYS.DBMS_LOGMNR.NO_SQL_DELIMITER";
+  private static final String COMMITTED_DATA_ONLY_OPTION = "SYS.DBMS_LOGMNR.COMMITTED_DATA_ONLY";
+  private static final String DDL_DICT_TRACKING_OPTION = "SYS.DBMS_LOGMNR.DDL_DICT_TRACKING";
+  private static final String DICT_FROM_REDO_LOGS_OPTION = "SYS.DBMS_LOGMNR.DICT_FROM_REDO_LOGS";
+  private static final String DICT_FROM_ONLINE_CATALOG_OPTION = "SYS.DBMS_LOGMNR.DICT_FROM_ONLINE_CATALOG";
 
   // Templates to build LogMiner start/stop commands
-  private static final String STOP_LOGMNR_CMD = "BEGIN DBMS_LOGMNR.END_LOGMNR; END;";
+  private static final String STOP_LOGMNR_CMD = "BEGIN DBMS_LOGMNR.SEND_LOGMNR; END;";
   private static final String START_LOGMNR_CMD = "BEGIN"
-      + " DBMS_LOGMNR.START_LOGMNR("
+      + " SYS.DBMS_LOGMNR.START_LOGMNR("
       + "   {}" // Placeholder for START_TIME_ARG or START_SCN_ARG
       + "   {}" // Placeholder for END_TIME_ARG or END_SCN_ARG
       + "   OPTIONS => {}" // Option flags
@@ -284,7 +284,7 @@ public class LogMinerSession {
     public LogMinerSession build() throws SQLException {
       List<String> configOptions = new ArrayList<>();
       configOptions.add(NO_SQL_DELIMITER_OPTION);
-      configOptions.add("DBMS_LOGMNR." + dictionarySource.name());
+      configOptions.add("SYS.DBMS_LOGMNR." + dictionarySource.name());
 
       if (tablesForMining == null || tablesForMining.size() == 0) {
         throw new IllegalArgumentException("At least a table must be configured for mining");

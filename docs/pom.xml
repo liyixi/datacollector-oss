@@ -27,7 +27,6 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.streamsets</groupId>
   <artifactId>streamsets-datacollector-docs</artifactId>
   <version>3.22.2</version>
   <description>StreamSets Data Collector Docs</description>
@@ -51,28 +50,32 @@
           <skip>true</skip>
         </configuration>
       </plugin>
-      <!--<plugin>-->
-        <!--<groupId>org.codehaus.mojo</groupId>-->
-        <!--<artifactId>ditaot-maven-plugin</artifactId>-->
-        <!--<version>1.0</version>-->
-        <!--<executions>-->
-          <!--<execution>-->
-            <!--<id>dita2chm</id>-->
-            <!--<phase>generate-sources</phase>-->
-            <!--<goals>-->
-              <!--<goal>run</goal>-->
-            <!--</goals>-->
-            <!--<configuration>-->
-              <!--<antProperties>-->
-                <!--<transtype>xhtml</transtype>-->
-                <!--<args.input>${basedir}/src/main/dita/UserGuide/UserGuide.ditamap</args.input>-->
-                <!--<args.css>${basedir}/src/main/css/skin-ss.css</args.css>-->
-                <!--<args.copycss>true</args.copycss>-->
-              <!--</antProperties>-->
-            <!--</configuration>-->
-          <!--</execution>-->
-        <!--</executions>-->
-      <!--</plugin>-->
+
+      <!-- Output 'XHTML' file,'PDF' file and so on plugin,it is base on dita-ot.
+       Detail:https://www.dita-ot.org
+       -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>ditaot-maven-plugin</artifactId>
+        <version>1.0</version>
+        <executions>
+          <execution>
+            <id>dita2chm</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <antProperties>
+                <transtype>xhtml</transtype>
+                <args.input>${basedir}/src/main/dita/UserGuide/UserGuide.ditamap</args.input>
+                <args.css>${basedir}/src/main/css/skin-ss.css</args.css>
+                <args.copycss>true</args.copycss>
+              </antProperties>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
 
     </plugins>
   </build>

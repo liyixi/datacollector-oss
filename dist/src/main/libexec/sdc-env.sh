@@ -48,6 +48,9 @@ export SDC_FILE_LIMIT="${SDC_FILE_LIMIT:-32768}"
 #
 export SDC_JAVA_OPTS="-Xmx1024m -Xms1024m -server -XX:-OmitStackTraceInFastThrow ${SDC_JAVA_OPTS}"
 
+# remote debug
+# export SDC_JAVA_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=1044 -Dsdc.static-web.dir=/home/liyixi/idea_workspace/datacollector-oss/datacollector-ui/target/dist ${SDC_JAVA_OPTS}"
+
 # Indicate that MapR Username/Password security is enabled
 #export SDC_JAVA_OPTS="-Dmaprlogin.password.enabled=true ${SDC_JAVA_OPTS}"
 

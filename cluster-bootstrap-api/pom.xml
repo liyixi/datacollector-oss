@@ -26,6 +26,7 @@
     <version>3.22.2</version>
     <relativePath>../root</relativePath>
   </parent>
+
   <artifactId>streamsets-datacollector-cluster-bootstrap-api</artifactId>
   <version>3.22.2</version>
   <description>StreamSets Data Collector Cluster Bootstrap API</description>
@@ -45,21 +46,25 @@
       <artifactId>guava</artifactId>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>com.streamsets</groupId>
       <artifactId>streamsets-datacollector-bootstrap</artifactId>
       <scope>compile</scope>
     </dependency>
+
     <dependency>
       <groupId>com.streamsets</groupId>
       <artifactId>streamsets-datacollector-container-common</artifactId>
       <scope>test</scope> <!-- DO NOT CHANGE, tests which require this should be moved to integration tests -->
     </dependency>
+
     <dependency>
       <groupId>com.streamsets</groupId>
       <artifactId>streamsets-datacollector-container</artifactId>
       <scope>test</scope> <!-- DO NOT CHANGE, tests which require this should be moved to integration tests -->
     </dependency>
+
     <dependency>
       <groupId>org.apache.avro</groupId>
       <artifactId>avro-mapred</artifactId>
