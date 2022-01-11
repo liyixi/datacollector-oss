@@ -26,7 +26,7 @@
     <version>3.22.2</version>
     <relativePath>../root-proto</relativePath>
   </parent>
-  <groupId>com.streamsets</groupId>
+
   <artifactId>streamsets-datacollector-root</artifactId>
   <version>3.22.2</version>
   <description>StreamSets Data Collector Root POM</description>
@@ -118,7 +118,6 @@
       </dependency>
       <dependency>
         <groupId>com.streamsets</groupId>
-        <artifactId>streamsets-datacollector-common</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -203,11 +202,6 @@
       </dependency>
       <dependency>
         <groupId>com.streamsets</groupId>
-        <artifactId>streamsets-datacollector-rabbitmq-lib</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.streamsets</groupId>
         <artifactId>streamsets-datacollector-dev-lib</artifactId>
         <version>${project.version}</version>
       </dependency>
@@ -216,61 +210,6 @@
         <artifactId>streamsets-datacollector-guavasupport</artifactId>
         <version>${project.version}</version>
       </dependency>
-<!--      <dependency>-->
-<!--        <groupId>com.streamsets</groupId>-->
-<!--        <artifactId>streamsets-datacollector-apache-kafka_0_8_1-lib</artifactId>-->
-<!--        <version>${project.version}</version>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>com.streamsets</groupId>-->
-<!--        <artifactId>streamsets-datacollector-apache-kafka_0_8_2-lib</artifactId>-->
-<!--        <version>${project.version}</version>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>com.streamsets</groupId>-->
-<!--        <artifactId>streamsets-datacollector-apache-kafka_0_9-lib</artifactId>-->
-<!--        <version>${project.version}</version>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>com.streamsets</groupId>-->
-<!--        <artifactId>streamsets-datacollector-apache-kafka_0_10-lib</artifactId>-->
-<!--        <version>${project.version}</version>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>com.streamsets</groupId>-->
-<!--        <artifactId>streamsets-datacollector-apache-kafka_0_11-lib</artifactId>-->
-<!--        <version>${project.version}</version>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>com.streamsets</groupId>-->
-<!--        <artifactId>streamsets-datacollector-apache-kafka_1_0-lib</artifactId>-->
-<!--        <version>${project.version}</version>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>com.streamsets</groupId>-->
-<!--        <artifactId>streamsets-datacollector-cdh_kafka_1_2-lib</artifactId>-->
-<!--        <version>${project.version}</version>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>com.streamsets</groupId>-->
-<!--        <artifactId>streamsets-datacollector-cdh_kafka_1_3-lib</artifactId>-->
-<!--        <version>${project.version}</version>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>com.streamsets</groupId>-->
-<!--        <artifactId>streamsets-datacollector-cdh_kafka_2_0-lib</artifactId>-->
-<!--        <version>${project.version}</version>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>com.streamsets</groupId>-->
-<!--        <artifactId>streamsets-datacollector-cdh_kafka_2_1-lib</artifactId>-->
-<!--        <version>${project.version}</version>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>com.streamsets</groupId>-->
-<!--        <artifactId>streamsets-datacollector-cdh_kafka_3_0-lib</artifactId>-->
-<!--        <version>${project.version}</version>-->
-<!--      </dependency>-->
       <dependency>
         <groupId>com.streamsets</groupId>
         <artifactId>streamsets-datacollector-jython_2_7-lib</artifactId>
@@ -320,11 +259,7 @@
         <version>${project.version}</version>
         <type>pom</type>
       </dependency>
-      <dependency>
-        <groupId>com.streamsets</groupId>
-        <artifactId>streamsets-datacollector-docs</artifactId>
-        <version>${project.version}</version>
-      </dependency>
+
       <dependency>
         <groupId>com.streamsets</groupId>
         <artifactId>streamsets-datacollector-bootstrap</artifactId>
@@ -338,11 +273,6 @@
       <dependency>
         <groupId>com.streamsets</groupId>
         <artifactId>streamsets-datacollector-miniIT</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.streamsets</groupId>
-        <artifactId>streamsets-datacollector-miniSDC</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

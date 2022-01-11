@@ -1,0 +1,3 @@
+1.恢复 Kafka stage lib(移除 apache kafka lib(<2.0))
+2.移除 cloudera 集成包module
+3.项目结构梳理，移除不必要的profile

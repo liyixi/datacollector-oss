@@ -26,7 +26,7 @@
     <version>3.22.2</version>
     <relativePath>../root</relativePath>
   </parent>
-  <groupId>com.streamsets</groupId>
+
   <artifactId>streamsets-datacollector-release</artifactId>
   <version>3.22.2</version>
   <description>StreamSets Data Collector Release TARs</description>
@@ -55,59 +55,59 @@
           <skip>true</skip>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>copy-dependency</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>copy</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>com.streamsets</groupId>
-                  <artifactId>streamsets-datacollector-edge</artifactId>
-                  <classifier>linux-arm</classifier>
-                  <version>${datacollector-edge.version}</version>
-                  <type>tgz</type>
-                  <overWrite>true</overWrite>
-                  <outputDirectory>${edge.release-dir}</outputDirectory>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>com.streamsets</groupId>
-                  <artifactId>streamsets-datacollector-edge</artifactId>
-                  <classifier>linux-amd64</classifier>
-                  <version>${datacollector-edge.version}</version>
-                  <type>tgz</type>
-                  <overWrite>true</overWrite>
-                  <outputDirectory>${edge.release-dir}</outputDirectory>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>com.streamsets</groupId>
-                  <artifactId>streamsets-datacollector-edge</artifactId>
-                  <classifier>darwin-amd64</classifier>
-                  <version>${datacollector-edge.version}</version>
-                  <type>tgz</type>
-                  <overWrite>true</overWrite>
-                  <outputDirectory>${edge.release-dir}</outputDirectory>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>com.streamsets</groupId>
-                  <artifactId>streamsets-datacollector-edge</artifactId>
-                  <classifier>windows-amd64</classifier>
-                  <version>${datacollector-edge.version}</version>
-                  <type>zip</type>
-                  <overWrite>true</overWrite>
-                  <outputDirectory>${edge.release-dir}</outputDirectory>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
+<!--      <plugin>-->
+<!--        <groupId>org.apache.maven.plugins</groupId>-->
+<!--        <artifactId>maven-dependency-plugin</artifactId>-->
+<!--        <executions>-->
+<!--          <execution>-->
+<!--            <id>copy-dependency</id>-->
+<!--            <phase>compile</phase>-->
+<!--            <goals>-->
+<!--              <goal>copy</goal>-->
+<!--            </goals>-->
+<!--            <configuration>-->
+<!--              <artifactItems>-->
+<!--                <artifactItem>-->
+<!--                  <groupId>com.streamsets</groupId>-->
+<!--                  <artifactId>streamsets-datacollector-edge</artifactId>-->
+<!--                  <classifier>linux-arm</classifier>-->
+<!--                  <version>${datacollector-edge.version}</version>-->
+<!--                  <type>tgz</type>-->
+<!--                  <overWrite>true</overWrite>-->
+<!--                  <outputDirectory>${edge.release-dir}</outputDirectory>-->
+<!--                </artifactItem>-->
+<!--                <artifactItem>-->
+<!--                  <groupId>com.streamsets</groupId>-->
+<!--                  <artifactId>streamsets-datacollector-edge</artifactId>-->
+<!--                  <classifier>linux-amd64</classifier>-->
+<!--                  <version>${datacollector-edge.version}</version>-->
+<!--                  <type>tgz</type>-->
+<!--                  <overWrite>true</overWrite>-->
+<!--                  <outputDirectory>${edge.release-dir}</outputDirectory>-->
+<!--                </artifactItem>-->
+<!--                <artifactItem>-->
+<!--                  <groupId>com.streamsets</groupId>-->
+<!--                  <artifactId>streamsets-datacollector-edge</artifactId>-->
+<!--                  <classifier>darwin-amd64</classifier>-->
+<!--                  <version>${datacollector-edge.version}</version>-->
+<!--                  <type>tgz</type>-->
+<!--                  <overWrite>true</overWrite>-->
+<!--                  <outputDirectory>${edge.release-dir}</outputDirectory>-->
+<!--                </artifactItem>-->
+<!--                <artifactItem>-->
+<!--                  <groupId>com.streamsets</groupId>-->
+<!--                  <artifactId>streamsets-datacollector-edge</artifactId>-->
+<!--                  <classifier>windows-amd64</classifier>-->
+<!--                  <version>${datacollector-edge.version}</version>-->
+<!--                  <type>zip</type>-->
+<!--                  <overWrite>true</overWrite>-->
+<!--                  <outputDirectory>${edge.release-dir}</outputDirectory>-->
+<!--                </artifactItem>-->
+<!--              </artifactItems>-->
+<!--            </configuration>-->
+<!--          </execution>-->
+<!--        </executions>-->
+<!--      </plugin>-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
@@ -128,6 +128,7 @@
               </descriptors>
             </configuration>
           </execution>
+
           <execution>
             <id>sdc-core</id>
             <phase>package</phase>

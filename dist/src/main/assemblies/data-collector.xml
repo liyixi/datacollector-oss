@@ -154,18 +154,6 @@
       <outputDirectory>/edge-binaries</outputDirectory>
     </fileSet>
 
-    <!-- local docs -->
-    <fileSet>
-      <directory>${docs.dist-dir}</directory>
-      <outputDirectory>/sdc-static-web/docs</outputDirectory>
-    </fileSet>
-
-    <!-- javadocs -->
-    <fileSet>
-      <directory>${basedir}/target/site/apidocs</directory>
-      <outputDirectory>/docs/api</outputDirectory>
-    </fileSet>
-
     <!--aster-client-lib -->
     <fileSet>
       <directory>${basedir}/../aster-client/target/dist/</directory>
@@ -238,12 +226,6 @@
       <outputDirectory>/streamsets-libs/</outputDirectory>
     </fileSet>
 
-    <!-- rabbitmq-lib -->
-    <fileSet>
-      <directory>${basedir}/../rabbitmq-lib/target/streamsets-libs/</directory>
-      <outputDirectory>/streamsets-libs/</outputDirectory>
-    </fileSet>
-
     <!-- dev-lib -->
     <fileSet>
       <directory>${basedir}/../dev-lib/target/streamsets-libs/</directory>
@@ -251,14 +233,6 @@
     </fileSet>
 
     <!-- Apache Kafka libs -->
-    <fileSet>
-      <directory>${basedir}/../${apache-kafka_1_0-lib}/target/streamsets-libs/</directory>
-      <outputDirectory>/streamsets-libs/</outputDirectory>
-    </fileSet>
-    <fileSet>
-      <directory>${basedir}/../${apache-kafka_1_1-lib}/target/streamsets-libs/</directory>
-      <outputDirectory>/streamsets-libs/</outputDirectory>
-    </fileSet>
     <fileSet>
       <directory>${basedir}/../${apache-kafka_2_0-lib}/target/streamsets-libs/</directory>
       <outputDirectory>/streamsets-libs/</outputDirectory>
@@ -292,18 +266,6 @@
       <outputDirectory>/streamsets-libs/</outputDirectory>
     </fileSet>
 
-    <!-- Cassandra libs -->
-    <fileSet>
-      <directory>${basedir}/../${cassandra_3-lib}/target/streamsets-libs/</directory>
-      <outputDirectory>/streamsets-libs/</outputDirectory>
-    </fileSet>
-
-    <!-- CouchBase libs -->
-     <fileSet>
-      <directory>${basedir}/../${couchbase_5-lib}/target/streamsets-libs/</directory>
-      <outputDirectory>/streamsets-libs/</outputDirectory>
-    </fileSet>
-
     <!-- Jython libs -->
     <fileSet>
       <directory>${basedir}/../${jython_2_7-lib}/target/streamsets-libs/</directory>
@@ -322,41 +284,15 @@
       <outputDirectory>/streamsets-libs/</outputDirectory>
     </fileSet>
 
-
-    <!-- vault-credentialstore-lib -->
-    <fileSet>
-      <directory>${basedir}/../vault-credentialstore-lib/target/streamsets-libs/</directory>
-      <outputDirectory>/streamsets-libs/</outputDirectory>
-    </fileSet>
-
     <!-- windows-lib-->
     <fileSet>
       <directory>${basedir}/../${windows-lib}/target/streamsets-libs/</directory>
       <outputDirectory>/streamsets-libs/</outputDirectory>
     </fileSet>
 
-    <!-- cyberark-credentialstore-lib -->
-    <fileSet>
-      <directory>${basedir}/../cyberark-credentialstore-lib/target/streamsets-libs/</directory>
-      <outputDirectory>/streamsets-libs/</outputDirectory>
-    </fileSet>
-
     <!-- wholefile-transformer-lib -->
     <fileSet>
       <directory>${basedir}/../wholefile-transformer-lib/target/streamsets-libs/</directory>
-      <outputDirectory>/streamsets-libs/</outputDirectory>
-    </fileSet>
-
-    <!-- EMR libs -->
-
-    <fileSet>
-      <directory>${basedir}/../${emr_hadoop_2_8_3-lib}/target/streamsets-libs/</directory>
-      <outputDirectory>/streamsets-libs/</outputDirectory>
-    </fileSet>
-
-    <!-- thycotic-credentialstore-lib -->
-    <fileSet>
-      <directory>${basedir}/../thycotic-credentialstore-lib/target/streamsets-libs/</directory>
       <outputDirectory>/streamsets-libs/</outputDirectory>
     </fileSet>
 

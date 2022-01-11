@@ -26,6 +26,7 @@
     <version>3.22.2</version>
     <relativePath>../root</relativePath>
   </parent>
+
   <artifactId>streamsets-aster-client</artifactId>
   <version>3.22.2</version>
   <description>StreamSets Aster Client</description>

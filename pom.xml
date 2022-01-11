@@ -15,7 +15,8 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 
---><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.streamsets</groupId>
   <artifactId>streamsets-datacollector</artifactId>
@@ -32,8 +33,6 @@
   </licenses>
 
   <properties>
-    <rat-plugin.version>0.12</rat-plugin.version>
-
     <!--
          Stage libraries that always built with the data collector (they dont have protolibs)
 
@@ -82,7 +81,6 @@
   </dependencyManagement>
 
   <modules>
-
     <!-- IMPORTANT: The main section of the POM must not include any stage library module -->
     <module>rbgen-maven-plugin</module>
     <module>root-proto</module>
@@ -102,44 +100,51 @@
     <module>container</module>
     <module>miniSDC</module>
     <module>sdk</module>
-    <module>stage-lib-archetype</module>
     <module>hadoop-common</module>
+    <module>jks-common</module>
     <module>aws-support</module>
     <module>jdbc-connection</module>
+    <module>kafka-connection</module>
     <module>aws-shared</module>
 
     <!-- cluster connections -->
     <module>cluster-connections/emr-cluster-connection</module>
-
     <module>root-lib</module>
-
     <module>stagesupport</module>
     <module>guavasupport</module>
     <module>commonlib</module>
     <module>httpcommonlib</module>
     <module>net-commonlib</module>
     <module>lookup-protolib</module>
+    <module>jks-credentialstore-protolib</module>
     <module>hdfs-protolib</module>
     <module>dir-spooler-protolib</module>
 
-<!--    <module>kafka-common</module>-->
-<!--    <module>kafka_source-protolib</module>-->
-<!--    <module>kafka_multisource-protolib</module>-->
-<!--    <module>kafka_multisource-0_9-protolib</module>-->
-<!--    <module>kafka_multisource-0_10-protolib</module>-->
-<!--    <module>kafka_target-protolib</module>-->
+    <module>sdc-kafka-api</module>
+    <module>sdc-kafka_0_8</module>
+    <module>sdc-kafka_0_9-common</module>
+    <module>sdc-kafka_0_9</module>
+    <module>sdc-kafka_0_11-common</module>
+    <module>sdc-kafka_0_11</module>
+    <module>sdc-kafka_2_0</module>
+
+    <module>kafka-common</module>
+    <module>kafka_source-protolib</module>
+    <module>kafka_multisource-protolib</module>
+    <module>kafka_multisource-0_10-protolib</module>
+    <module>kafka_target-protolib</module>
 
     <module>jython-protolib</module>
     <module>groovy-protolib</module>
     <module>flume-protolib</module>
     <module>cluster-common</module>
+    <module>cluster-kafka-protolib</module>
     <module>cluster-bootstrap-api</module>
     <module>cluster-bootstrap</module>
     <module>client-api</module>
     <module>cli</module>
     <module>scripting-protolib</module>
     <module>wholefile-converter-protolib</module>
-
     <!--
          Stage libraries that always built with the data collector (they dont have protolibs)
 
@@ -178,204 +183,10 @@
           <skip>false</skip>
         </configuration>
       </plugin>
-
-      <plugin>
-        <groupId>org.apache.rat</groupId>
-        <artifactId>apache-rat-plugin</artifactId>
-        <version>${rat-plugin.version}</version>
-        <configuration>
-          <excludeSubProjects>false</excludeSubProjects>
-          <excludes>
-            <exclude>CHANGES.txt</exclude>
-            <!-- Eclipse -->
-            <exclude>**/.settings/*</exclude>
-            <exclude>**/.classpath</exclude>
-            <exclude>**/.project</exclude>
-            <!-- IntelliJ IDE -->
-            <exclude>**/.idea/**</exclude>
-            <exclude>**/*.iml</exclude>
-
-            <!-- Git -->
-            <exclude>**/.gitignore</exclude>
-            <exclude>.gitreview</exclude>
-            <exclude>.git/**</exclude>
-
-            <!-- Jenkins -->
-            <exclude>**/buildInfo*.properties</exclude>
-
-            <!-- Maven -->
-            <exclude>**/target/**</exclude>
-            <exclude>.m2/**</exclude> <!-- maven on jenkins -->
-
-            <!-- Node.js Modules -->
-            <exclude>**/node_modules/**</exclude>
-
-            <!-- Bower -->
-            <exclude>**/.bowerrc</exclude>
-
-            <!-- Rat doesn't properly recognize header in some files -->
-            <exclude>salesforce-connection/src/main/java/com/streamsets/pipeline/lib/salesforce/connection/mutualauth/ClientSSLTransport.java</exclude>
-
-            <!-- Files that do not support comments, cannot have Licence header -->
-            <exclude>**/META-INF/services/**</exclude>
-            <exclude>sdk/src/main/services/**</exclude>
-            <exclude>**/*.conf</exclude>
-            <exclude>**/*.svg</exclude>
-            <exclude>**/MANIFEST.MF</exclude>
-            <exclude>**/service.sdl</exclude>
-            <exclude>**/*.avro</exclude>
-            <exclude>**/*.db</exclude>
-            <exclude>**/*.csv</exclude>
-            <exclude>**/*.txt</exclude>
-            <exclude>**/*.json</exclude>
-            <exclude>**/*.log</exclude>
-            <exclude>**/*.html</exclude>
-            <exclude>common/src/main/resources/*</exclude>
-            <exclude>**/*.desc</exclude>
-            <exclude>**/*.proto</exclude>
-            <exclude>**/*.md</exclude>
-            <exclude>**/*.xls</exclude>
-            <exclude>**/*.xlsx</exclude>
-            <exclude>**/*.properties</exclude>
-
-            <!-- Protobuf generated files which are checked in for testing-->
-            <exclude>commonlib/src/test/java/com/streamsets/pipeline/lib/util/EmployeeProto.java</exclude>
-            <exclude>commonlib/src/test/java/com/streamsets/pipeline/lib/util/EngineerProto.java</exclude>
-            <exclude>commonlib/src/test/java/com/streamsets/pipeline/lib/util/ExecutiveProto.java</exclude>
-            <exclude>commonlib/src/test/java/com/streamsets/pipeline/lib/util/ExtensionsProto.java</exclude>
-            <exclude>commonlib/src/test/java/com/streamsets/pipeline/lib/util/PersonProto.java</exclude>
-            <exclude>commonlib/src/test/java/com/streamsets/pipeline/lib/util/RepeatedProto.java</exclude>
-            <exclude>commonlib/src/test/java/com/streamsets/pipeline/lib/util/OneofProto.java</exclude>
-            <exclude>commonlib/src/test/resources/*.ser</exclude>
-            <exclude>commonlib/src/main/resources/*</exclude>
-            <exclude>basic-lib/src/test/resources/*.ser</exclude>
-            <exclude>**/id_rsa_test</exclude>
-            <exclude>**/id_rsa_test_unencrypted</exclude>
-            <exclude>**/*.pub</exclude>
-
-            <!-- TestOverrunStreamingXmlParser relies on this file being small, cannot add license header -->
-            <exclude>common/src/test/resources/TestStreamingXmlParser-records.xml</exclude>
-
-            <!-- Modules to exclude (for now), not java stuff -->
-            <exclude>python/**</exclude>
-            <exclude>docs/**</exclude>
-<!--            <exclude>cloudera-integration/csd/**</exclude>-->
-            <exclude>datacollector-ui/src/main/webapp/common/directives/**</exclude>
-
-            <!-- Test Databricks ML Model files -->
-            <exclude>databricks-ml-protolib/src/test/resources/**</exclude>
-
-            <!-- Example scripts for scripting stages -->
-            <exclude>jython-protolib/src/main/resources/com/streamsets/pipeline/stage/processor/jython/default_init_script.py</exclude>
-            <exclude>jython-protolib/src/main/resources/com/streamsets/pipeline/stage/processor/jython/default_script.py</exclude>
-            <exclude>jython-protolib/src/main/resources/com/streamsets/pipeline/stage/processor/jython/default_destroy_script.py</exclude>
-            <exclude>basic-lib/src/main/resources/com/streamsets/pipeline/stage/processor/javascript/default_init_script.js</exclude>
-            <exclude>basic-lib/src/main/resources/com/streamsets/pipeline/stage/processor/javascript/default_script.js</exclude>
-            <exclude>basic-lib/src/main/resources/com/streamsets/pipeline/stage/processor/javascript/default_destroy_script.js</exclude>
-            <exclude>groovy-protolib/src/main/resources/com/streamsets/pipeline/stage/processor/groovy/default_init_script.groovy</exclude>
-            <exclude>groovy-protolib/src/main/resources/com/streamsets/pipeline/stage/processor/groovy/default_script.groovy</exclude>
-            <exclude>groovy-protolib/src/main/resources/com/streamsets/pipeline/stage/processor/groovy/default_destroy_script.groovy</exclude>
-            <exclude>groovy-protolib/src/main/resources/com/streamsets/pipeline/stage/origin/groovy/GeneratorOriginScript.groovy</exclude>
-            <exclude>basic-lib/src/main/resources/com/streamsets/pipeline/stage/origin/javascript/GeneratorOriginScript.js</exclude>
-            <exclude>jython-protolib/src/main/resources/com/streamsets/pipeline/stage/origin/jython/GeneratorOriginScript.py</exclude>
-
-          </excludes>
-          <goal>run</goal>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
 
-<!--  <reporting>-->
-<!--    <plugins>-->
-<!--      <plugin>-->
-<!--        <groupId>org.owasp</groupId>-->
-<!--        <artifactId>dependency-check-maven</artifactId>-->
-<!--        <version>3.1.2</version>-->
-<!--        <inherited>false</inherited>-->
-<!--        <configuration>-->
-<!--          &lt;!&ndash; The plugin's report is not manageable since we don't control what stage libraries ship. The-->
-<!--            GitHub interface is a bit more useful than this one.-->
-<!--          &ndash;&gt;-->
-<!--          <skip>true</skip>-->
-
-<!--          &lt;!&ndash; We don't have any .NET code &ndash;&gt;-->
-<!--          <assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>-->
-<!--          &lt;!&ndash; skip non-bundled jars &ndash;&gt;-->
-<!--          <skipProvidedScope>true</skipProvidedScope>-->
-<!--          <skipRuntimeScope>true</skipRuntimeScope>-->
-<!--          &lt;!&ndash; We want HTML for easy viewing, but XML for reporting via SonarQube &ndash;&gt;-->
-<!--          <format>ALL</format>-->
-<!--          <suppressionFile>${basedir}/dependency-check-suppression.xml</suppressionFile>-->
-<!--        </configuration>-->
-<!--        <reportSets>-->
-<!--          <reportSet>-->
-<!--            <id>aggregate</id>-->
-<!--            <inherited>false</inherited>-->
-<!--            <reports>-->
-<!--              <report>aggregate</report>-->
-<!--            </reports>-->
-<!--          </reportSet>-->
-<!--        </reportSets>-->
-<!--      </plugin>-->
-<!--      <plugin>-->
-<!--        <groupId>org.apache.maven.plugins</groupId>-->
-<!--        <artifactId>maven-project-info-reports-plugin</artifactId>-->
-<!--        <version>2.8</version>-->
-<!--        <configuration>-->
-<!--          <dependencyLocationsEnabled>false</dependencyLocationsEnabled>-->
-<!--          <dependencyDetailsEnabled>false</dependencyDetailsEnabled>-->
-<!--        </configuration>-->
-<!--        <reportSets>-->
-<!--          <reportSet>-->
-<!--            <reports>-->
-<!--              <report>dependencies</report>-->
-<!--            </reports>-->
-<!--          </reportSet>-->
-<!--        </reportSets>-->
-<!--      </plugin>-->
-<!--    </plugins>-->
-<!--  </reporting>-->
-
   <profiles>
-    <profile>
-      <id>rat-check</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-        <property>
-          <name>!skipRat</name>
-
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <inherited>false</inherited>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <version>1.6.0</version>
-            <executions>
-              <execution>
-                <id>rat-check</id>
-                <phase>generate-sources</phase>
-                <goals>
-                  <goal>exec</goal>
-                </goals>
-              </execution>
-            </executions>
-            <configuration>
-              <executable>mvn</executable>
-              <workingDirectory>${basedir}</workingDirectory>
-              <arguments>
-                <argument>apache-rat:check</argument>
-                <argument>-N</argument>
-              </arguments>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
     <profile>
       <id>all-libs</id>
       <activation>
@@ -391,46 +202,32 @@
              IMPORTANT: define a property matching the module directory name
              for every stage library here with the directory name as value
         -->
-<!--        <apache-kafka_0_8_1-lib>apache-kafka_0_8_1-lib</apache-kafka_0_8_1-lib>-->
-<!--        <apache-kafka_0_8_2-lib>apache-kafka_0_8_2-lib</apache-kafka_0_8_2-lib>-->
-<!--        <apache-kafka_0_9-lib>apache-kafka_0_9-lib</apache-kafka_0_9-lib>-->
-<!--        <apache-kafka_0_10-lib>apache-kafka_0_10-lib</apache-kafka_0_10-lib>-->
-<!--        <apache-kafka_0_11-lib>apache-kafka_0_11-lib</apache-kafka_0_11-lib>-->
-<!--        <apache-kafka_1_0-lib>apache-kafka_1_0-lib</apache-kafka_1_0-lib>-->
-<!--        <apache-kafka_1_1-lib>apache-kafka_1_1-lib</apache-kafka_1_1-lib>-->
-<!--        <apache-kafka_2_0-lib>apache-kafka_2_0-lib</apache-kafka_2_0-lib>-->
-<!--        <apache-kafka_2_1-lib>apache-kafka_2_1-lib</apache-kafka_2_1-lib>-->
-<!--        <apache-kafka_2_2-lib>apache-kafka_2_2-lib</apache-kafka_2_2-lib>-->
-<!--        <apache-kafka_2_3-lib>apache-kafka_2_3-lib</apache-kafka_2_3-lib>-->
-<!--        <apache-kafka_2_4-lib>apache-kafka_2_4-lib</apache-kafka_2_4-lib>-->
-<!--        <apache-kafka_2_5-lib>apache-kafka_2_5-lib</apache-kafka_2_5-lib>-->
-<!--        <apache-kafka_2_6-lib>apache-kafka_2_6-lib</apache-kafka_2_6-lib>-->
-<!--        <apache-kafka_2_7-lib>apache-kafka_2_7-lib</apache-kafka_2_7-lib>-->
-
+        <apache-kafka_2_0-lib>apache-kafka_2_0-lib</apache-kafka_2_0-lib>
+        <apache-kafka_2_1-lib>apache-kafka_2_1-lib</apache-kafka_2_1-lib>
+        <apache-kafka_2_2-lib>apache-kafka_2_2-lib</apache-kafka_2_2-lib>
+        <apache-kafka_2_3-lib>apache-kafka_2_3-lib</apache-kafka_2_3-lib>
+        <apache-kafka_2_4-lib>apache-kafka_2_4-lib</apache-kafka_2_4-lib>
+        <apache-kafka_2_5-lib>apache-kafka_2_5-lib</apache-kafka_2_5-lib>
+        <apache-kafka_2_6-lib>apache-kafka_2_6-lib</apache-kafka_2_6-lib>
+        <apache-kafka_2_7-lib>apache-kafka_2_7-lib</apache-kafka_2_7-lib>
         <groovy_2_4-lib>groovy_2_4-lib</groovy_2_4-lib>
         <jython_2_7-lib>jython_2_7-lib</jython_2_7-lib>
       </properties>
+
       <modules>
         <!--
              IMPORTANT: keep this in alphabetical order
 
              IMPORTANT: the modules for all stage libraries
         -->
-<!--        <module>apache-kafka_0_8_1-lib</module>-->
-<!--        <module>apache-kafka_0_8_2-lib</module>-->
-<!--        <module>apache-kafka_0_9-lib</module>-->
-<!--        <module>apache-kafka_0_10-lib</module>-->
-<!--        <module>apache-kafka_0_11-lib</module>-->
-<!--        <module>apache-kafka_1_0-lib</module>-->
-<!--        <module>apache-kafka_1_1-lib</module>-->
-<!--        <module>apache-kafka_2_0-lib</module>-->
-<!--        <module>apache-kafka_2_1-lib</module>-->
-<!--        <module>apache-kafka_2_2-lib</module>-->
-<!--        <module>apache-kafka_2_3-lib</module>-->
-<!--        <module>apache-kafka_2_4-lib</module>-->
-<!--        <module>apache-kafka_2_5-lib</module>-->
-<!--        <module>apache-kafka_2_6-lib</module>-->
-<!--        <module>apache-kafka_2_7-lib</module>-->
+        <module>apache-kafka_2_0-lib</module>
+        <module>apache-kafka_2_1-lib</module>
+        <module>apache-kafka_2_2-lib</module>
+        <module>apache-kafka_2_3-lib</module>
+        <module>apache-kafka_2_4-lib</module>
+        <module>apache-kafka_2_5-lib</module>
+        <module>apache-kafka_2_6-lib</module>
+        <module>apache-kafka_2_7-lib</module>
         <module>groovy_2_4-lib</module>
         <module>jython_2_7-lib</module>
       </modules>
@@ -464,71 +261,31 @@
 
              IMPORTANT: the modules for the sample dev stage libraries
         -->
-<!--        <module>apache-kafka_2_7-lib</module>-->
+        <module>apache-kafka_2_7-lib</module>
         <module>groovy_2_4-lib</module>
         <module>jython_2_7-lib</module>
       </modules>
     </profile>
 
     <profile>
-      <id>archetype</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <modules>
-        <module>stage-lib-archetype</module>
-      </modules>
+      <id>sign</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
-
-<!--    <profile>-->
-<!--      <id>sign</id>-->
-<!--      <build>-->
-<!--        <plugins>-->
-<!--          <plugin>-->
-<!--            <groupId>org.apache.maven.plugins</groupId>-->
-<!--            <artifactId>maven-gpg-plugin</artifactId>-->
-<!--            <executions>-->
-<!--              <execution>-->
-<!--                <phase>verify</phase>-->
-<!--                <goals>-->
-<!--                  <goal>sign</goal>-->
-<!--                </goals>-->
-<!--              </execution>-->
-<!--            </executions>-->
-<!--          </plugin>-->
-<!--        </plugins>-->
-<!--      </build>-->
-<!--    </profile>-->
-
-    <!-- IMPORTANT: keep the following profiles at the end -->
-
-    <!--
-         Some maven plugins don't work properly unless the stage-lib-parent is being
-         build as well. Example is mvn version:set command.
-     -->
-    <profile>
-      <id>stage-lib-parent</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
-      <modules>
-        <module>stage-lib-parent</module>
-      </modules>
-    </profile>
-
-<!--    <profile>-->
-<!--      &lt;!&ndash; include all "base" modules, where a set of stagelibs needs a common parent pom that doesn't necessarily-->
-<!--           need to be imported as a module in its own right; this is necessary in order to run the version update-->
-<!--           properly &ndash;&gt;-->
-<!--      <id>all-poms</id>-->
-<!--      <activation>-->
-<!--        <activeByDefault>false</activeByDefault>-->
-<!--      </activation>-->
-<!--      <modules>-->
-<!--        <module>hdp-stagelib-base</module>-->
-<!--        <module>cdh_6-stagelib-base</module>-->
-<!--      </modules>-->
-<!--    </profile>-->
 
     <profile>
       <id>ui</id>
@@ -544,19 +301,6 @@
     </profile>
 
     <profile>
-      <id>docs</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-        <property>
-          <name>release</name>
-        </property>
-      </activation>
-      <modules>
-        <module>docs</module>
-      </modules>
-    </profile>
-
-    <profile>
       <id>dist</id>
       <activation>
         <activeByDefault>false</activeByDefault>
@@ -566,7 +310,6 @@
       </activation>
       <modules>
         <module>dist</module>
-<!--        <module>cloudera-integration</module>-->
       </modules>
     </profile>
 
@@ -583,67 +326,6 @@
       </modules>
     </profile>
 
-    <profile>
-      <id>rpm</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-        <property>
-          <name>release</name>
-        </property>
-      </activation>
-      <modules>
-        <module>rpm</module>
-      </modules>
-    </profile>
-
-    <profile>
-      <id>java-src</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <!--<version>2.6</version>-->
-            <inherited>false</inherited>
-            <configuration>
-              <appendAssemblyId>false</appendAssemblyId>
-              <attach>false</attach>
-              <tarLongFileMode>gnu</tarLongFileMode>
-              <finalName>streamsets-datacollector-java-src-${project.version}</finalName>
-              <descriptors>
-                <descriptor>release/src/main/assemblies/java-src.xml</descriptor>
-              </descriptors>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
-      <id>generate-sources</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-source-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>attach-sources</id>
-                <goals>
-                  <goal>jar</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
   </profiles>
 
   <pluginRepositories>

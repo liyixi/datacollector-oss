@@ -36,7 +36,6 @@
   <properties>
     <!-- trick to avoid pulling files from 'ui' & 'docs' if their profiles are not active -->
     <ui.dist-dir>${basedir}/src/main/emptydir</ui.dist-dir>
-    <docs.dist-dir>${basedir}/src/main/emptydir</docs.dist-dir>
     <edge.dist-dir>${basedir}/dist/target/edge-binaries</edge.dist-dir>
     <sdc.log4j.level>DEBUG</sdc.log4j.level>
     <snappy.version>1.0.5</snappy.version>
@@ -317,8 +316,6 @@
       <properties>
         <!-- trick to avoid pulling UI files if the 'ui' profile is not active -->
         <sdc.ui.dist-dir>${basedir}/../datacollector-ui/target/dist</sdc.ui.dist-dir>
-        <!-- TODO: for now we copy committed generated docs  -->
-        <docs.dist-dir>${basedir}/../docs/generated</docs.dist-dir>
       </properties>
       <!--
        Since we're not using really a "jar" from the UI this is mainly to force maven
@@ -347,74 +344,6 @@
         <!-- Override for log4j level for releases -->
         <sdc.log4j.level>INFO</sdc.log4j.level>
       </properties>
-    </profile>
-
-    <profile>
-      <id>docs</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-        <property>
-          <name>release</name>
-        </property>
-      </activation>
-      <properties>
-        <docs.dist-dir>${basedir}/../docs/target/dita/out</docs.dist-dir>
-      </properties>
-      <dependencies>
-        <dependency>
-          <groupId>com.streamsets</groupId>
-          <artifactId>streamsets-datacollector-docs</artifactId>
-          <scope>compile</scope>
-        </dependency>
-      </dependencies>
-
-      <build>
-        <plugins>
-          <!-- COMMENTING OUT JAVADOC GENERATION -->
-          <plugin>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>2.10.1</version>
-            <executions>
-              <execution>
-                <id>javadoc</id>
-                <phase>prepare-package</phase>
-                <goals>
-                  <goal>javadoc</goal>
-                </goals>
-                <configuration>
-                  <linksource>false</linksource>
-                  <quiet>true</quiet>
-                  <verbose>false</verbose>
-                  <charset>UTF-8</charset>
-
-                  <excludePackageNames>com.streamsets.pipeline.api.impl:com.streamsets.pipeline.sdk.annotationsprocessor</excludePackageNames>
-
-                  <groups>
-                    <group>
-                      <title>Pipeline API</title>
-                      <packages>
-                        com.streamsets.pipeline.api:com.streamsets.pipeline.api.base
-                      </packages>
-                    </group>
-                    <group>
-                      <title>Pipeline Stage SDK API</title>
-                      <packages>
-                        com.streamsets.pipeline.sdk
-                      </packages>
-                    </group>
-                  </groups>
-
-                  <includeDependencySources>true</includeDependencySources>
-                  <dependencySourceIncludes>
-                    <dependencySourceInclude>com.streamsets:streamsets-datacollector-api</dependencySourceInclude>
-                    <dependencySourceInclude>com.streamsets:streamsets-datacollector-sdk</dependencySourceInclude>
-                  </dependencySourceIncludes>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
   </profiles>
 </project>
