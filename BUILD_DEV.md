@@ -1,157 +1,121 @@
-# go StreamSets Data Collector
+# 构建 StreamSets Data Collector 参考
 
-To build the Data Collector you will need the following software :
-
-- Git 1.9+
-- Oracle JDK 8+ (1.8, 11, or 14)
-- Docker 1.10+    (required only if running integration tests, older versions may work but are not tested.)
-- Maven 3.6.3+
-- Node 0.10.32+1  (macOS, `brew install nodejs`       : Linux, [nodejs.org](https://nodejs.org) or [Packages from NodeSource](https://github.com/nodesource/distributions))
-- npm            (macOS, `brew install nodejs`       : Linux, [nodejs.org](https://nodejs.org) or [Packages from NodeSource](https://github.com/nodesource/distributions))
-- bower 1.8.2    (macOS, `npm -g install bower`      : Linux, `sudo npm -g install bower`)
+# 开发环境依赖准备 :
+- OS  Ubuntu 20.04.3 LTS (GNU/Linux 5.11.0-44-generic x86_64)
+- Git 2.25.1
+- Oracle JDK 1.8.0_181(Compile) OpenJDK 11.0.10(Runtime)
+- Maven 3.8.3
+- Node 10.19.0  (macOS, `brew install nodejs`       : Linux, [nodejs.org](https://nodejs.org) or [Packages from NodeSource](https://github.com/nodesource/distributions))
+- npm 6.14.4   (macOS, `brew install nodejs`       : Linux, [nodejs.org](https://nodejs.org) or [Packages from NodeSource](https://github.com/nodesource/distributions))
+- bower    (macOS, `npm -g install bower`      : Linux, `sudo npm -g install bower`)
 - grunt-cli      (macOS, `npm -g install grunt-cli`  : Linux, `sudo npm -g install grunt-cli`)
-- md5sum          (macOS, `brew install md5sha1sum`)
 
-## Installing Java JDK via Homebrew
-    brew cask install java<version>
 
-    # latest version (Java 14)
-    brew cask install java
+## 环境变量
 
-    # LTS version (Java 11)
-    brew cask install java11
+    # export JAVA_HOME=/home/liyixi/java/java11
+    export JAVA_HOME=/home/liyixi/java/jdk1.8.0_181
+    export CLASSPATH=.:$JAVA_HOME/lib
+    export PATH=$JAVA_HOME/bin:$PATH
 
-## Switch Java JDK via alias
+    export M2_HOME=/home/liyixi/apache-maven-3.8.3
+    export MAVEN_HOME=/home/liyixi/apache-maven-3.8.3
+    # export PATH=$MAVEN_HOME/bin:$PATH:/home/liyixi/idea2021.3/idea-IU-213.5744.223/bin
 
-Setup your JAVA_HOME path in your .zshrc or .bash_profile for your primary Java version and add an export for each
-installed Java version.
+JDK环境变量配置可以参考官方部分。[Click here for details](BUILD.md)
 
-    export JAVA_HOME=$(/usr/libexec/java_home -v11.8)
-    export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
-    export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
-    export JAVA_14_HOME=$(/usr/libexec/java_home -v14)
+## 前置项目构建
 
-Add an alias to your .zshrc or .bash_profile for each installed Java version.
-The alias exports JAVA_HOME with the selected JAVA_VERSION_HOME.
+- 下载最新的源码
 
-    alias java8='export JAVA_HOME=$JAVA_8_HOME'
-    alias java11='export JAVA_HOME=$JAVA_11_HOME'
-    alias java14='export JAVA_HOME=$JAVA_14_HOME'
+  `git clone http://192.168.16.193/dev3/support/streamsets/datacollector-api-oss.git`
 
-## Prerequisite Tasks for Building Data Collector
+  `git clone http://192.168.16.193/dev3/support/streamsets/datacollector-plugin-api-oss.git`
 
-If you're building master branch, then you need to install API and Plugin API modules to your maven cache first before compiling Data Collector. Released versions
-are published to public maven repositories and for them this step can be skipped.
-
-- You can do that by getting the latest code from Github
-
-  `git clone http://github.com/streamsets/datacollector-api`
-
-  and
-
-  `git clone http://github.com/streamsets/datacollector-plugin-api`
-
-- And install each of these to your local maven repository
+- 安装到本地 Maven 库
 
   `mvn clean install -DskipTests`
 
-You also need the artifacts for datacollector-edge installed into your local maven repository.
+### datacollector-edge
 
-- Ensure you have the [prerequisites listed for building datacollector-edge](https://github.com/streamsets/datacollector-edge/blob/master/BUILD.md#minimum-requirements)
+datacollector-edage 项目为可选编译，若实际使用中需要使用datacollector的Edge Pipeline，则需要构建edge模块
 
-- Get the latest version of datacollector-edge from Github
+- 下载最新的datacollector-edge源码
 
-  `git clone https://github.com/streamsets/datacollector-edge.git`
+  `git clone http://192.168.16.193/dev3/support/streamsets/datacollector-edge-oss.git`
 
-- Gradle is used in this project as a build tool, so in order to install it to your local maven repository execute:
+- 安装到本地 Maven 库:
 
   `./gradlew goClean dist publishToMavenLocal`
 
-Finally, get the latest Data Collector code from Github
+## 构建 Streamsets-datacollector
 
-`git clone http://github.com/streamsets/datacollector`
+下载源码
 
-## Development build
+`git clone http://192.168.16.193/dev3/support/streamsets/streamsets-collector.git`
 
-From within the Data Collector directory, execute:
 
-`mvn package -Pdist,ui -DskipTests`
+### 构建前端Web
 
-To start the Data Collector, execute:
+- 尝试安装 datacollector-ui
 
-`dist/target/streamsets-datacollector-3.22.2/streamsets-datacollector-3.22.2/bin/streamsets dc`
+  进入datacollector-ui目录，执行 `mvn install -DskipTests`
 
-For Data Collector CLI, execute:
+- Bower下载依赖失败临时解决办法
 
-`dist/target/streamsets-datacollector-3.22.2/streamsets-datacollector-3.22.2/bin/streamsets cli`
+  进入datacollector-ui-dependence目录，将src/main/resources/bower_components.zip解压至datacollector-ui/target 目录下
 
-To skip the RAT report during the build use the `-DskipRat` option.
+- 构建前端文档结构
 
-## Running integration tests
+进入datacollector-ui目录，执行`grunt watch`
 
-From within the Data Collector directory, execute:
+or
+
+使用 Idea Run/Debug Configuration(Grunt.Js)
+
+<img style="width:100%;" src="BUILD_3.jpg" alt="">
+
+<font color="green">最后，通过环境变量**SDC_JAVA_OPT**指定前端Web目录，如下</font>
+
+    export SDC_JAVA_OPTS="-Dsdc.static-web.dir={ROOT目录}/datacollector-ui/target/dist ${SDC_JAVA_OPTS}"
+
+### 核心datacollector构建
+
+进入streamsets-collector工程目录执行:
 
 `mvn install -Pdist -DskipTests`
 
-Once the dependencies are installed, run the integration tests:
+运行 streamsets-collector:
 
-`mvn failsafe:integration-test -DfailIfNoTests=false`
+`dist/target/streamsets-datacollector-3.22.2/streamsets-datacollector-3.22.2/bin/streamsets dc`
 
-In case you want to run a specific integration class (here the module basic-lib is executed with integration tests in 'HttpProcessorIT'):
+or
 
-`mvn -pl basic-lib failsafe:integration-test -Dit.test="HttpProcessorIT" -DfailIfNoTests=false`
+使用 Idea Run/Debug Configuration(Shell Script)，参考如下：
 
-## Release build
+<img style="width:100%;" src="BUILD_1.jpg" alt="">
 
-From within the Data Collector directory, execute:
+### 服务Debug
 
-`mvn clean package -Drelease -DskipTests -P-rpm`
+- 打开调试配置
 
-The release tarball will be created at:
+  修改 {ROOT}/dist/target/streamsets-datacollector-3.22.2/streamsets-datacollector-3.22.2/bin/libexec/sdc-env.sh 文件，增加如下内容
 
-`release/target/streamsets-datacollector-all-3.22.2-CATALOG.tgz`
 
-Extract the tarball to your preferred location :
+    export SDC_JAVA_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044 ${SDC_JAVA_OPTS}"
 
-`tar xf streamsets-datacollector-all-3.22.2-CATALOG.tgz`
+- 连接调试
 
-To start the DataCollector, execute:
+  使用Idea Run/Debug Configuration(Remote Debug),参考如下：
 
-`streamsets-datacollector-all-3.22.2-CATALOG/bin/streamsets dc`
+<img style="width:100%;" src="BUILD_2.jpg" alt="">
 
-Extract the tarball to your preferred location :
+最终服务启动效果如图：
 
-`tar xf streamsets-datacollector-all-3.22.2.tgz`
+<img style="width:100%;" src="BUILD_4.jpg" alt="">
 
-To start the DataCollector, execute:
+## 打包发布
 
-`streamsets-datacollector-all-3.22.2/bin/streamsets dc`
+在项目Root目录执行:
 
-## Troubleshooting
-
-Recent changes in Node might cause the build to fail with an error similar to:
-
-    [INFO] --------------------------------------
-    [INFO]          BOWER INSTALL
-    [INFO] --------------------------------------
-    [INFO] grunt version :
-    grunt-cli v1.2.0
-    grunt v0.4.5
-    [INFO] --------------------------------------
-    [INFO]          GRUNT TEST --NO-COLOR
-    [INFO] --------------------------------------
-    grunt[12558]: ../src/node_contextify.cc:629:static void node::contextify::ContextifyScript::New(const FunctionCallbackInfo<v8::Value> &): Assertion `args[1]->IsString()' failed.
-     1: node::Abort() [/usr/local/bin/node]
-     2: node::MakeCallback(v8::Isolate*, v8::Local<v8::Object>, char const*, int, v8::Local<v8::Value>*, node::async_context) [/usr/local/bin/node]
-     3: node::contextify::ContextifyScript::New(v8::FunctionCallbackInfo<v8::Value> const&) [/usr/local/bin/node]
-     4: v8::internal::FunctionCallbackArguments::Call(v8::internal::CallHandlerInfo*) [/usr/local/bin/node]
-     5: v8::internal::MaybeHandle<v8::internal::Object> v8::internal::(anonymous namespace)::HandleApiCallHelper<true>(v8::internal::Isolate*, v8::internal::Handle<v8::internal::HeapObject>, v8::internal::Handle<v8::internal::HeapObject>, v8::internal::Handle<v8::internal::FunctionTemplateInfo>, v8::internal::Handle<v8::internal::Object>, v8::internal::BuiltinArguments) [/usr/local/bin/node]
-     6: v8::internal::Builtin_Impl_HandleApiCall(v8::internal::BuiltinArguments, v8::internal::Isolate*) [/usr/local/bin/node]
-
-Upgrade Node to the current version (at the time of writing, this was 10.7.0) and execute the following commands from the datacollector directory:
-
-    cd datacollector-ui
-    rm -rf node_modules
-    rm -rf package-lock.json
-    npm --force cache clean
-    npm install
+`mvn clean package -Drelease -DskipTests`
