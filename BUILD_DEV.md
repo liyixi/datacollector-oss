@@ -119,3 +119,5 @@ or
 在项目Root目录执行:
 
 `mvn clean package -Drelease -DskipTests`
+
+更详细的构建操作请参考官方文档,[官方文档](BUILD.md)
