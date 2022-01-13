@@ -118,6 +118,7 @@
       </dependency>
       <dependency>
         <groupId>com.streamsets</groupId>
+        <artifactId>streamsets-datacollector-common</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
