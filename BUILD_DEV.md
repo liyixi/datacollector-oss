@@ -28,9 +28,9 @@ JDK环境变量配置可以参考官方部分。[Click here for details](BUILD.m
 
 - 下载最新的源码
 
-  `git clone http://192.168.16.193/dev3/support/streamsets/datacollector-api-oss.git`
+  `git clone http://xxx/datacollector-api-oss.git`
 
-  `git clone http://192.168.16.193/dev3/support/streamsets/datacollector-plugin-api-oss.git`
+  `git clone http://xxx/datacollector-plugin-api-oss.git`
 
 - 安装到本地 Maven 库
 
@@ -42,7 +42,7 @@ datacollector-edage 项目为可选编译，若实际使用中需要使用dataco
 
 - 下载最新的datacollector-edge源码
 
-  `git clone http://192.168.16.193/dev3/support/streamsets/datacollector-edge-oss.git`
+  `git clone http://xxx/datacollector-edge-oss.git`
 
 - 安装到本地 Maven 库:
 
@@ -52,7 +52,7 @@ datacollector-edage 项目为可选编译，若实际使用中需要使用dataco
 
 下载源码
 
-`git clone http://192.168.16.193/dev3/support/streamsets/streamsets-collector.git`
+`git clone http://xxx/streamsets-collector.git`
 
 
 ### 构建前端Web
