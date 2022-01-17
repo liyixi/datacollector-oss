@@ -267,6 +267,20 @@
       </modules>
     </profile>
 
+    <!--
+         Some maven plugins don't work properly unless the stage-lib-parent is being
+         build as well. Example is mvn version:set command.
+     -->
+    <profile>
+      <id>stage-lib-parent</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <modules>
+        <module>stage-lib-parent</module>
+      </modules>
+    </profile>
+
     <profile>
       <id>sign</id>
       <build>
